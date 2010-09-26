@@ -38,6 +38,7 @@ class mongodb {
 
 	package { "mongodb-stable":
 		ensure => installed,
+		require => Exec["update-apt"],
 	}
 	
 	service { "mongodb":
