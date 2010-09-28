@@ -32,7 +32,7 @@ class mongodb {
 	exec { "update-apt":
 		path => "/bin:/usr/bin",
 		command => "apt-get update",
-		unless => "mongo --version 2> /dev/null",
+		unless => "ls /usr/bin | grep mongo",
 		require => Exec["10gen-apt-key"],
 	}
 
