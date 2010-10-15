@@ -3,22 +3,23 @@
 # This class installs MongoDB (stable)
 #
 # Notes:
-#  This class is Ubuntu 10.04 specific for now.
+#  This class is Ubuntu specific.
 #  By Sean Porter, Gastown Labs Inc.
 #
-# Parameters:
-#
 # Actions:
-#
-# Requires:
+#  - Install MongoDB using a 10gen Ubuntu repository
+#  - Manage the MongoDB service
+#  - MongoDB can be part of a replica set
 #
 # Sample Usage:
 #  include mongodb
 #
 class mongodb {
+	include mongodb::params
+	
 	exec { "10gen-apt-repo":
 		path => "/bin:/usr/bin",
-		command => "add-apt-repository 'deb http://downloads.mongodb.org/distros/ubuntu 10.4 10gen'",
+		command => "add-apt-repository '${mongodb::params::repository}'",
 		unless => "cat /etc/apt/sources.list | grep 10gen",
 	}
 	
@@ -45,5 +46,14 @@ class mongodb {
 		enable => true,
 		ensure => running,
 		require => Package["mongodb-stable"],
+	}
+	
+	define replica_set {
+		file { "/etc/init/mongodb.conf":
+			content => template("mongodb/mongodb.conf.erb"),
+		    mode => "0644",
+			notify => Service["mongodb"],
+			require => Package["mongodb-stable"],
+		}
 	}
 }

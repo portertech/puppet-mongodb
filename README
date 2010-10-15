@@ -1,0 +1,22 @@
+# MongoDB Module #
+Author	: Sean Porter <sean@gastownlabs.com>
+Version	: 0.0.4
+Licence : Apache
+
+Module for creating a MongoDB server.
+
+Use an AMI provided by: http://alestic.com/
+
+Sample Usage :
+	node 'mongodb-1.domain.com', 'mongodb-2.domain.com', 'mongodb-3.domain.com' {
+		# Install MongoDB
+		include mongodb
+		# Nodes are in a replica set
+		mongodb::replica_set { "example_set_name": }
+	}
+	
+## CHANGELOG ##
+- v0.0.1 : Hello World.
+- v0.0.2 : Require apt to update.
+- v0.0.3 : Fixed the apt update. Puppet couldn’t determine the apt update resource state.
+- v0.0.4 : Begin support for multiple Ubuntu releases. Added replica set support and README.
