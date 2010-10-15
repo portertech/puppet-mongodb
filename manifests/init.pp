@@ -51,7 +51,7 @@ class mongodb {
 	define replica_set {
 		file { "/etc/init/mongodb.conf":
 			content => template("mongodb/mongodb.conf.erb"),
-		    mode => "0644",
+			mode => "0644",
 			notify => Service["mongodb"],
 			require => Package["mongodb-stable"],
 		}
