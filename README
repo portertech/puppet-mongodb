@@ -20,3 +20,4 @@ Sample Usage :
 - v0.0.2 : Require apt to update.
 - v0.0.3 : Fixed the apt update. Puppet couldn’t determine the apt update resource state.
 - v0.0.4 : Begin support for multiple Ubuntu releases. Added replica set support and README.
+- v0.0.5 : Support for Ubuntu Maverick (10.10).
