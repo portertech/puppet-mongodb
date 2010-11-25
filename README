@@ -1,11 +1,18 @@
 # MongoDB Module #
 Author	: Sean Porter <sean@gastownlabs.com>
-Version	: 0.0.4
+Version	: 0.0.6
 Licence : Apache
 
 Module for creating a MongoDB server.
 
-Use an AMI provided by: http://alestic.com/
+Use a Ubuntu AMI provided by: http://alestic.com/
+Use Git.
+
+Add it:
+	git submodule add git@github.com:portertech/puppet-mongodb.git modules/mongodb
+	
+Update it:
+	git submodule update
 
 Sample Usage :
 	node 'mongodb-1.domain.com', 'mongodb-2.domain.com', 'mongodb-3.domain.com' {
@@ -21,3 +28,4 @@ Sample Usage :
 - v0.0.3 : Fixed the apt update. Puppet couldn’t determine the apt update resource state.
 - v0.0.4 : Begin support for multiple Ubuntu releases. Added replica set support and README.
 - v0.0.5 : Support for Ubuntu Maverick (10.10).
+- v0.0.6 : Added "python-software-properties" for apt abstraction.

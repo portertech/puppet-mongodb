@@ -17,10 +17,15 @@
 class mongodb {
 	include mongodb::params
 	
+	package { "python-software-properties":
+		ensure => installed,
+	}
+	
 	exec { "10gen-apt-repo":
 		path => "/bin:/usr/bin",
 		command => "add-apt-repository '${mongodb::params::repository}'",
 		unless => "cat /etc/apt/sources.list | grep 10gen",
+		require => Package["python-software-properties"],
 	}
 	
 	exec { "10gen-apt-key":
