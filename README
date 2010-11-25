@@ -9,10 +9,12 @@ Use a Ubuntu AMI provided by: http://alestic.com/
 Use Git.
 
 Add it:
-	git submodule add git@github.com:portertech/puppet-mongodb.git modules/mongodb
-	
-Update it:
+	git submodule add git://github.com/portertech/puppet-mongodb.git modules/mongodb
+	git submodule init
 	git submodule update
+
+Update it:
+	git pull modules/mongodb
 
 Sample Usage :
 	node 'mongodb-1.domain.com', 'mongodb-2.domain.com', 'mongodb-3.domain.com' {
@@ -21,7 +23,7 @@ Sample Usage :
 		# Nodes are in a replica set
 		mongodb::replica_set { "example_set_name": }
 	}
-	
+
 ## CHANGELOG ##
 - v0.0.1 : Hello World.
 - v0.0.2 : Require apt to update.
