@@ -17,8 +17,10 @@
 class mongodb {
 	include mongodb::params
 	
-	package { "python-software-properties":
-		ensure => installed,
+	if ! defined(Package["python-software-properties"]) {
+		package { "python-software-properties":
+						ensure => installed,
+		}
 	}
 	
 	exec { "10gen-apt-repo":
