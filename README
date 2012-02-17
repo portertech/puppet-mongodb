@@ -19,9 +19,12 @@ Update it:
 Sample Usage :
 	node 'mongodb-1.domain.com', 'mongodb-2.domain.com', 'mongodb-3.domain.com' {
 		# Install MongoDB
-		include mongodb
-		# Nodes are in a replica set
-		mongodb::replica_set { "example_set_name": }
+		class { mongodb:
+			# Nodes are in a replica set
+			replSet => "example_set_name",
+			# Increase number of available mongodb connections
+			ulimit_nofile => 21000,
+		}
 	}
 
 ## CONTRIBUTORS ##

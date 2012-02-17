@@ -12,11 +12,18 @@
 #  - MongoDB can be part of a replica set
 #
 # Sample Usage:
-#  include mongodb
+#  class { mongodb:
+#    replSet => "myReplicaSet",
+#    ulimit_nofile => 21000,
+#  }
 #
-class mongodb {
-	include mongodb::params
-	
+class mongodb(
+  $replSet = $mongodb::params::replSet,
+  $ulimit_nofile = $mongodb::params::ulimit_nofile,
+  $repository = $mongodb::params::repository,
+  $package = $mongodb::params::package
+) inherits mongodb::params {
+
 	package { "python-software-properties":
 		ensure => installed,
 	}
@@ -46,19 +53,15 @@ class mongodb {
 		ensure => installed,
 		require => Exec["update-apt"],
 	}
-	
+
 	service { "mongodb":
 		enable => true,
 		ensure => running,
-		require => Package[$mongodb::params::package],
 	}
-	
-	define replica_set {
-		file { "/etc/init/mongodb.conf":
-			content => template("mongodb/mongodb.conf.erb"),
-			mode => "0644",
-			notify => Service["mongodb"],
-			require => Package[$mongodb::params::package],
-		}
-	}
+
+  file { "/etc/init/mongodb.conf":
+    content => template("mongodb/mongodb.conf.erb"),
+    mode => "0644",
+    notify => Service["mongodb"],
+  }
 }
