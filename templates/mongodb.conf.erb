@@ -2,19 +2,19 @@
 # Managed by Puppet, DO NOT TOUCH!
 
 pre-start script
-    mkdir -p /var/lib/mongodb/
-    mkdir -p /var/log/mongodb/
+  mkdir -p /var/lib/mongodb/
+  mkdir -p /var/log/mongodb/
 end script
 
 start on runlevel [2345]
 stop on runlevel [06]
 
 # http://www.mongodb.org/display/DOCS/Too+Many+Open+Files
-# mongodb has a limit of 20k connections
+# MongoDB has a hard limit of 20k connections
 limit nofile <%= ulimit_nofile %> <%= ulimit_nofile %>
 
 script
   ENABLE_MONGODB="yes"
   if [ -f /etc/default/mongodb ]; then . /etc/default/mongodb; fi
-  if [ "x$ENABLE_MONGODB" = "xyes" ]; then exec start-stop-daemon --start --quiet --chuid mongodb --exec  /usr/bin/mongod -- --config /etc/mongodb.conf <%= "--replSet #{replSet}" unless replSet.empty? %>; fi
+  if [ "x$ENABLE_MONGODB" = "xyes" ]; then exec start-stop-daemon --start --quiet --chuid mongodb --exec /usr/bin/mongod -- --config /etc/mongodb.conf <%= "--replSet #{replSet}" unless replSet.empty? %>; fi
 end script

@@ -1,6 +1,6 @@
 # MongoDB Module #
 Author	: Sean Porter <portertech@gmail.com>
-Version	: 0.0.7
+Version	: 0.0.8
 Licence : Apache
 
 Module for creating a MongoDB server.
@@ -35,9 +35,9 @@ Matt McManus - https://github.com/mattmcmanus
 ## CHANGELOG ##
 - v0.0.1 : Hello World.
 - v0.0.2 : Require apt to update.
-- v0.0.3 : Fixed the apt update. Puppet couldn’t determine the apt update resource state.
-- v0.0.4 : Begin support for multiple Ubuntu releases. Added replica set support and README.
+- v0.0.3 : Fixed apt update.
+- v0.0.4 : Support for multiple Ubuntu releases. Added replica set support.
 - v0.0.5 : Support for Ubuntu Maverick (10.10).
 - v0.0.6 : Added "python-software-properties" for apt abstraction.
 - v0.0.7 : Added support for Ubuntu Natty Narwhal (11.04).
-- v0.0.8 : Supports most Ubuntu releases (>= 9.04) (Upstart). Using a class. Adjust ulimit.
+- v0.0.8 : Support Ubuntu releases (>= 9.04) (Upstart). Use a class. Adjust ulimit.
