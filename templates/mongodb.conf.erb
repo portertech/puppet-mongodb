@@ -16,5 +16,5 @@ limit nofile <%= ulimit_nofile %> <%= ulimit_nofile %>
 script
   ENABLE_MONGODB="yes"
   if [ -f /etc/default/mongodb ]; then . /etc/default/mongodb; fi
-  if [ "x$ENABLE_MONGODB" = "xyes" ]; then exec start-stop-daemon --start --quiet --chuid mongodb --exec  /usr/bin/mongod -- --config /etc/mongodb.conf <%= replSet ? "--replSet #{replSet}" : "" %>; fi
+  if [ "x$ENABLE_MONGODB" = "xyes" ]; then exec start-stop-daemon --start --quiet --chuid mongodb --exec  /usr/bin/mongod -- --config /etc/mongodb.conf <%= "--replSet #{replSet}" unless replSet.empty? %>; fi
 end script
