@@ -24,8 +24,10 @@ class mongodb(
   $package = $mongodb::params::package
 ) inherits mongodb::params {
 
-  package { "python-software-properties":
-    ensure => installed,
+  if !defined(Package["python-software-properties"]) {
+    package { "python-software-properties":
+      ensure => installed,
+    }
   }
 
   exec { "10gen-apt-repo":
