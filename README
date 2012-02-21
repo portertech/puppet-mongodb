@@ -28,6 +28,7 @@ Sample Usage :
   }
 
 ## CONTRIBUTORS ##
+Knut Moller - https://github.com/v1rtual
 Nixon - https://github.com/nixon
 Craig Younkins - https://github.com/cyounkins
 Matt McManus - https://github.com/mattmcmanus
@@ -41,3 +42,4 @@ Matt McManus - https://github.com/mattmcmanus
 - v0.0.6 : Added "python-software-properties" for apt abstraction.
 - v0.0.7 : Added support for Ubuntu Natty Narwhal (11.04).
 - v0.0.8 : Support Ubuntu releases (>= 9.04) (Upstart). Use a class. Adjust ulimit.
+- v0.0.9 : Fixed possible duplicate definition of package 'python-software-properties'
