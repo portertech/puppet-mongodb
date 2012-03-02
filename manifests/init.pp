@@ -51,7 +51,7 @@ class mongodb(
     require => Exec["10gen-apt-key"],
   }
 
-  package { $mongodb::params::package:
+  package { $package:
     ensure => installed,
     require => Exec["update-apt"],
   }
@@ -59,12 +59,14 @@ class mongodb(
   service { "mongodb":
     enable => true,
     ensure => running,
+    require => Package[$package],
   }
 
   file { "/etc/init/mongodb.conf":
     content => template("mongodb/mongodb.conf.erb"),
     mode => "0644",
     notify => Service["mongodb"],
+    require => Package[$package],
   }
 
 }
