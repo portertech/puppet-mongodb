@@ -32,7 +32,7 @@ class mongodb(
 
   exec { "10gen-apt-repo":
     path => "/bin:/usr/bin",
-    command => "echo '${mongodb::params::repository}' >> /etc/apt/sources.list",
+    command => "echo '${repository}' >> /etc/apt/sources.list",
     unless => "cat /etc/apt/sources.list | grep 10gen",
     require => Package["python-software-properties"],
   }
