@@ -63,7 +63,7 @@ class mongodb(
   }
 
   file { "/etc/init/mongodb.conf":
-    content => template("mongodb/mongodb.conf.erb"),
+    content => template("mongodb/etc-init-mongodb.conf.erb"),
     mode => "0644",
     notify => Service["mongodb"],
     require => Package[$package],
