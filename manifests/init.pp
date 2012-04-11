@@ -32,7 +32,7 @@ class mongodb(
 
   exec { "10gen-apt-repo":
     path => "/bin:/usr/bin",
-    command => "echo '${mongodb::params::repository}' >> /etc/apt/sources.list",
+    command => "echo '${repository}' >> /etc/apt/sources.list",
     unless => "cat /etc/apt/sources.list | grep 10gen",
     require => Package["python-software-properties"],
   }
@@ -51,7 +51,7 @@ class mongodb(
     require => Exec["10gen-apt-key"],
   }
 
-  package { $mongodb::params::package:
+  package { $package:
     ensure => installed,
     require => Exec["update-apt"],
   }
@@ -59,12 +59,14 @@ class mongodb(
   service { "mongodb":
     enable => true,
     ensure => running,
+    require => Package[$package],
   }
 
   file { "/etc/init/mongodb.conf":
     content => template("mongodb/mongodb.conf.erb"),
     mode => "0644",
     notify => Service["mongodb"],
+    require => Package[$package],
   }
 
 }
