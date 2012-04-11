@@ -5,7 +5,6 @@ Vagrant::Config.run do |config|
   config.vm.box = "lucid32"
   config.vm.host_name = 'mongo'
   config.vm.share_folder "mongodb", "/tmp/vagrant-puppet/modules/mongodb", "."
-  # config.vm.network :hostonly, "192.168.31.48"
   config.vm.provision :puppet do |puppet|
     puppet.manifests_path = "tests"
     puppet.manifest_file = "vagrant.pp"

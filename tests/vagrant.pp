@@ -10,19 +10,17 @@ class apt_get_update {
   }
 }
 
-# The mongodb module requires python-software-packages, which can't be found
-# on the Vagrant lucid32 image unless you run apt-get update first.
+# Run apt-get update prior to testing
 class { 'apt_get_update':
   stage => pre,
 }
 
-# The Vagrant lucid32 image doesn't create the 'puppet' group, and can't 
-# properly finish a run without it.
+# Ensure the Vagrant image has a 'puppet' user group for testing
 group { 'puppet':
   ensure => "present",
 }
 
-# Finally, we test our module:
+# Finally, we test our module
 class { 'mongodb':
   # replSet     => "set",
   ulimit_nofile => 20000,
