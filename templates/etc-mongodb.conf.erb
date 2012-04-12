@@ -1,0 +1,29 @@
+# Mongodb configuration file at /etc/mongodb.conf
+#
+# WARNING: this file is managed with Puppet. Local edits will be
+# destroyed on each Puppet run.
+#
+# Documentation:
+# http://www.mongodb.org/display/DOCS/File+Based+Configuration
+#
+# Defaults:
+# https://raw.github.com/mongodb/mongo/master/debian/mongodb.conf
+#
+# ------------------------------------------------------------------------
+# Note: if you run mongodb as a non-root user (recommended) you may
+# need to create and set permissions for this directory manually,
+# e.g., if the parent directory isn't mutable by the mongodb user.
+dbpath = <%= dbpath %>
+logpath = <%= logpath %>
+logappend = <%= logappend %>
+bind_ip = <%= bind_ip %>
+port = <%= port %>
+journal = <%= journal %>
+nojournal = <%= nojournal %>
+<% if replSet != "" %>replSet = <%= replSet %><% end %>
+
+<% if extra_config != "" %>
+# ------------------------------------------------------------------------
+# Extra configuration supplied as mongodb::conf's extra_config argument:
+<%= extra_config %>
+<% end %>

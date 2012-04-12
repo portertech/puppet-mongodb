@@ -23,7 +23,20 @@ group { 'puppet':
 }
 
 # Finally, we test our module:
-class { 'mongodb':
-  # replSet     => "set",
+class { 'mongodb::server': }
+
+class { 'mongodb::conf':
+  bind_ip      => "127.0.0.1",
+  dbpath       => "/var/db/mongodb",
+  logpath      => "/var/log/mongodb.log",
   ulimit_nofile => 20000,
+  extra_config => "shardsvr = false",
+}
+
+file { "/var/db": 
+  ensure => directory,
+  owner  => root,
+  group  => root,
+  mode   => '0755',
+  # automatically required by File["/var/db/mongodb"] on Puppet 2.7
 }
