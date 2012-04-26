@@ -26,8 +26,9 @@ class mongodb {
 	exec { "10gen-apt-repo":
 		path => "/bin:/usr/bin",
 		command => "echo '${mongodb::params::repository}' >> /etc/apt/sources.list",
-		unless => "cat /etc/apt/sources.list | grep 10gen",
+		unless => "cat /etc/apt/sources.list | grep '${mongodb::params::repository}'",
 		require => Package["python-software-properties"],
+		notify  => Exec["update-apt"],
 	}
 	
 	exec { "10gen-apt-key":
@@ -40,7 +41,7 @@ class mongodb {
 	exec { "update-apt":
 		path => "/bin:/usr/bin",
 		command => "apt-get update",
-		unless => "ls /usr/bin | grep mongo",
+		refreshonly => true,
 		require => Exec["10gen-apt-key"],
 	}
 
