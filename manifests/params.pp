@@ -6,6 +6,7 @@
 # - The 10gen Ubuntu $repository to use
 # - The 10gen Ubuntu $package to use
 # - A replica set to join
+# - Whether to restart after crashes
 # - A nofile ulimit
 #
 # Sample Usage:
@@ -17,6 +18,9 @@ class mongodb::params {
 
   # Name of replica set (if any) to join
   $replSet = ""
+
+  # restart mongodb after crashes, etc
+  $respawn = ""
 
   # Number of open files ulimit can be changed if mongodb.log reports
   # "too many open files" or "too many open connections" messages.
