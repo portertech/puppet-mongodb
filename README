@@ -13,7 +13,7 @@ Sample Usage :
     class { mongodb:
       # Nodes are in a replica set
       replSet => "example_set_name",
-      # Increased open files limit (mongodb connections, etc.)
+      # Increased open files limit (MongoDB connections, etc.)
       ulimit_nofile => 20000,
     }
   }
