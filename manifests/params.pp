@@ -19,7 +19,7 @@ class mongodb::params {
   # Name of replica set (if any) to join
   $replSet = ""
 
-  # restart mongodb after crashes, etc
+  # Whether to restart MongoDB after crashes
   $respawn = ""
 
   # Number of open files ulimit can be changed if mongodb.log reports

@@ -25,11 +25,10 @@ class mongodb(
   $package = $mongodb::params::package
 ) inherits mongodb::params {
 
-  if !defined(Package["python-software-properties"]) {
-    package { "python-software-properties":
-      ensure => installed,
-      require => Exec["update-apt"],
-    }
+  exec { "10gen-apt-key":
+    path => "/bin:/usr/bin",
+    command => "apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10",
+    unless => "apt-key list | grep 10gen",
   }
 
   exec { "10gen-apt-repo":
@@ -39,13 +38,7 @@ class mongodb(
     require => Exec["10gen-apt-key"],
   }
 
-  exec { "10gen-apt-key":
-    path => "/bin:/usr/bin",
-    command => "apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10",
-    unless => "apt-key list | grep 10gen",
-  }
-
-  exec { "update-apt":
+  exec { "10gen-apt-update":
     path => "/bin:/usr/bin",
     command => "apt-get update",
     unless => "ls /usr/bin | grep mongo",
@@ -54,11 +47,7 @@ class mongodb(
 
   package { $package:
     ensure => installed,
-    require => [
-      Exec["10gen-apt-repo"],
-      Exec["update-apt"],
-      Package["python-software-properties"],
-    ],
+    require => Exec["10gen-apt-update"],
   }
 
   service { "mongodb":

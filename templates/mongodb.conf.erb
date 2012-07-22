@@ -8,8 +8,7 @@ end script
 
 start on runlevel [2345]
 stop on runlevel [06]
-
-<%= "respawn" unless respawn.empty? %>
+<%= "respawn" unless respawn.empty? -%>
 
 # http://www.mongodb.org/display/DOCS/Too+Many+Open+Files
 # MongoDB has a hard limit of 20k connections
