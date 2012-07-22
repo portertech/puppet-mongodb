@@ -5,9 +5,9 @@
 # Parameters:
 # - The 10gen Ubuntu $repository to use
 # - The 10gen Ubuntu $package to use
-# - A replica set to join
-# - Whether to restart after crashes
-# - A nofile ulimit
+# - Replica set to join
+# - Whether to restart after crashing
+# - Open files limit
 #
 # Sample Usage:
 #  include mongodb::params
@@ -16,10 +16,10 @@ class mongodb::params {
   $repository = "deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen"
   $package = "mongodb-10gen"
 
-  # Name of replica set (if any) to join
+  # Replica set to join
   $replSet = ""
 
-  # Whether to restart MongoDB after crashes
+  # Whether to restart after crashing
   $respawn = ""
 
   # Number of open files ulimit can be changed if mongodb.log reports

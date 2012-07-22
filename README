@@ -1,20 +1,11 @@
 # MongoDB Module #
 Author	: Sean Porter <portertech@gmail.com>
-Version	: 0.1.0
+Version	: 0.1.1
 Licence : Apache
 
 Module for creating a MongoDB server.
 
-Use a Ubuntu AMI provided by: http://alestic.com/
-Use Git.
-
-Add it:
-  git submodule add git://github.com/portertech/puppet-mongodb.git modules/mongodb
-  git submodule init
-  git submodule update
-
-Update it:
-  git pull modules/mongodb
+This module is Ubuntu specific.
 
 Sample Usage :
   node 'mongodb-1.domain.com', 'mongodb-2.domain.com', 'mongodb-3.domain.com' {
@@ -22,7 +13,7 @@ Sample Usage :
     class { mongodb:
       # Nodes are in a replica set
       replSet => "example_set_name",
-      # Increase number of available mongodb connections
+      # Increased open files limit (mongodb connections, etc.)
       ulimit_nofile => 20000,
     }
   }
@@ -33,6 +24,7 @@ Nixon - https://github.com/nixon
 Craig Younkins - https://github.com/cyounkins
 Matt McManus - https://github.com/mattmcmanus
 Garth Kidd - https://github.com/garthk
+Jackqu7 - https://github.com/jackqu7
 
 ## CHANGELOG ##
 - v0.0.1 : Hello World.
@@ -45,3 +37,4 @@ Garth Kidd - https://github.com/garthk
 - v0.0.8 : Support Ubuntu releases (>= 9.04) (Upstart). Use a class. Adjust ulimit.
 - v0.0.9 : Fixed possible duplicate Package["python-software-properties"].
 - v0.1.0 : Fixed package install prior to notifying the service & added tests.
+- v0.1.1 : Optional process respawn, removed python-software-properties package.
