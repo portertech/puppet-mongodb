@@ -1,6 +1,6 @@
 # MongoDB Module #
 Author	: Sean Porter <portertech@gmail.com>
-Version	: 0.1.1
+Version	: 0.1.2
 Licence : Apache
 
 Module for creating a MongoDB server.
