@@ -25,16 +25,18 @@ Craig Younkins - https://github.com/cyounkins
 Matt McManus - https://github.com/mattmcmanus
 Garth Kidd - https://github.com/garthk
 Jackqu7 - https://github.com/jackqu7
+dobrist - https://github.com/dobrist
 
 ## CHANGELOG ##
 - v0.0.1 : Hello World.
-- v0.0.2 : Require apt to update.
-- v0.0.3 : Fixed apt update.
+- v0.0.2 : Require APT to update.
+- v0.0.3 : Fixed APT update.
 - v0.0.4 : Support for multiple Ubuntu releases. Added replica set support.
 - v0.0.5 : Support for Ubuntu Maverick (10.10).
-- v0.0.6 : Added "python-software-properties" for apt abstraction.
+- v0.0.6 : Added "python-software-properties" for APT abstraction.
 - v0.0.7 : Added support for Ubuntu Natty Narwhal (11.04).
 - v0.0.8 : Support Ubuntu releases (>= 9.04) (Upstart). Use a class. Adjust ulimit.
 - v0.0.9 : Fixed possible duplicate Package["python-software-properties"].
 - v0.1.0 : Fixed package install prior to notifying the service & added tests.
 - v0.1.1 : Optional process respawn, removed python-software-properties package.
+- v0.1.2 : Changed APT key server URL to be egress filtering friendly.
